@@ -14,7 +14,7 @@ import { error } from "highcharts";
 /*
  * 사용자 관리 화면에서만 사용하는 개별 모달창이므로 전역모달로 관리하지 않음. 
  */
-function MemberModifyModal({ selectedRowKey, successCallback, closeCallback }) {
+function MemberModifyModal({ visible, selectedRowKeys, successCallback, onClose }) {
     const dispatch = useDispatch();
     //모달창 입력데이터 상태 관리.
     const [inputData, setInputData] = useState({
@@ -29,10 +29,12 @@ function MemberModifyModal({ selectedRowKey, successCallback, closeCallback }) {
 
     useEffect(() => {
         getMemberInfo();
+        console.log('selectedRowKey',selectedRowKeys[0])
+        
     }, [])
 
     const getMemberInfo = () => {
-        api.get('/api/v1/member/getMember', { MBER_ID: selectedRowKey[0] }).then(res => {
+        api.get('/api/v1/member/getMember', { MBER_ID: selectedRowKeys[0] }).then(res => {
             const result = res.data;
             console.log('result', result)
             if (result['success']) {
@@ -51,14 +53,14 @@ function MemberModifyModal({ selectedRowKey, successCallback, closeCallback }) {
                 description: "구성원 정보를 요청하던중 오류가 발생했어요.",
                 message: "오류 발생"
             }))
-            closeCallback();
+            onClose();
         });
     }
 
     const handleOk = () => {
         let msg = ''
         const requestData = {
-            MBER_ID: selectedRowKey[0],
+            MBER_ID: selectedRowKeys[0],
             EMAIL: inputData.email,
             PASSWORD: inputData.password.length <= 0 ? null : inputData.password,
             NAME: inputData.name,
@@ -115,7 +117,7 @@ function MemberModifyModal({ selectedRowKey, successCallback, closeCallback }) {
     };
 
     const handleCancel = () => {
-        closeCallback();
+        onClose();
     };
     if(loading) {
         return null;

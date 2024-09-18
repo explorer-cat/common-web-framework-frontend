@@ -8,7 +8,7 @@ import { api } from "../../../utils/customAxios";
 /*
  * 사용자 관리 화면에서만 사용하는 개별 모달창이므로 전역모달로 관리하지 않음. 
  */
-function MemberCreateModal({ successCallback, closeCallback }) {
+function MemberCreateModal({ successCallback, onClose }) {
     const dispatch = useDispatch();
     //모달창 입력데이터 상태 관리.
     const [inputData, setInputData] = useState({
@@ -65,7 +65,7 @@ function MemberCreateModal({ successCallback, closeCallback }) {
                 }
 
                 if (data.success) {
-                    setTimeout(() => {
+                    // setTimeout(() => {
                         setConfirmLoading(false);
                         //성공 콜백 함수 호출.
                         successCallback();
@@ -75,8 +75,7 @@ function MemberCreateModal({ successCallback, closeCallback }) {
                             type: "SUCCESS",
                             message: "정상적으로 처리되었어요"
                         }))
-
-                    }, 1000);
+                    // }, 1000);
                 }
             }).catch(error => {
                 console.error("Error occurred:", error);
@@ -95,7 +94,7 @@ function MemberCreateModal({ successCallback, closeCallback }) {
             auth: '',
         }
         );
-        closeCallback();
+        onClose();
     };
 
     return (

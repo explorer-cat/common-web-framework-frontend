@@ -10,16 +10,18 @@ import PositionSettingPage from './position-setting-page';
 const DivisionWrap = styled.div`
   display: flex;
   width : calc(100vw - 256px);
-  height: calc(100vh - 0px);
+  overflow: auto;
+  height: 100%;
   background:rgb(248, 249, 250);
 `
 
 const RightWrap = styled.div`
     margin: 32px;
     padding: 24px;
+    height: calc(100% - 300px);
     width: 100%;
     background: #FFF;
-    min-width: 950px;
+    min-width: 1024px;
     border-radius:10px;
 `
 function AdminWrapped(props) {

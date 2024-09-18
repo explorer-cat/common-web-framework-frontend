@@ -1,8 +1,6 @@
 import { api } from '../utils/customAxios';
 import {utils} from "../utils/utils";
 export const adminApi = {}
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJsZXZlbCI6MCwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzZXFsIjoxLCJleHAiOjE3MDgyMzg4NDZ9.c6UpI8HAvMxUqMHnCgeBXJ7uYSig4m1DVJ87EQg6yGc';
-
 const path = '/api/v1/admin'
 
 adminApi.getMember = (requestData) => {
