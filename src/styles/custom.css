@@ -1,0 +1,15 @@
+#admin-member-table-container .ant-table-body {
+    min-height: calc(100vh - 400px) !important;
+  } 
+
+.ant-table-content .ant-table-thead {
+  height:30px !important;
+}
+
+.ant-table-content {
+  border-top: 2px solid #1B75D0 !important;
+}
+
+.ant-table-tbody{
+  height:100vh;
+}

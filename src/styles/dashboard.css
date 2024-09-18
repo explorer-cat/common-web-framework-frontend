@@ -1,0 +1,102 @@
+.dashboard_content {
+    background: #17171c;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.87);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    /* border-radius: 4px; */
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    padding: 60px 230px;
+    flex: 1 1 0%;
+    overflow: auto;
+}
+
+.dashboard_content .public_table .table_content td:nth-child(1) {
+    color:#3485fa;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+#pape_title {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    /* border-bottom: 0.4px solid rgba(255, 255, 255, 0.12); */
+}
+
+#page_content {
+    margin-top: 32px;
+}
+
+#page_content .card_grid {
+    display: flex;
+    /* width: calc(100% + 40px); */
+    height: 140px;
+    position: relative;
+    /* right: 20px; */
+}
+
+#real_server {
+    width: 100%;
+    /* height: 610px; */
+}
+
+#pape_title span {
+    color: white;
+}
+
+#pape_title .title_left {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+#real_server .table_content  tr td:nth-child(2){
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    color: #C3C3C6;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+}
+
+.dashboard_content .slick-slide {
+    margin : 0 12px;
+}
+
+.dashboard_content .slick-track {
+    height: 63px !important;
+}
+.summary_box {
+    display: flex;
+    flex-wrap: wrap; /* 여러 줄에 걸쳐 표시되도록 설정 */
+    gap: 15px; /* 박스 사이의 간격 */
+    margin-top: 20px; /* 상단 여백 */
+    /* width: 60%; */
+}
+
+.summary_item {
+    display: flex;
+    justify-content: space-between; /* 라벨과 값을 양쪽 끝에 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    border: 1px solid #ddd; /* 경계선 색상 및 두께 */
+    padding: 10px 15px; /* 내부 여백 */
+    border-radius: 8px; /* 둥근 모서리 */
+    width: calc(50% - 10px); /* 2열을 위한 너비 설정 (간격을 고려) */
+    box-sizing: border-box; /* 패딩과 보더를 너비 계산에 포함 */
+}
+
+.summary_label {
+    font-weight: 600 !important; /* 두꺼운 글씨 */
+    font-size: 15px !important;
+    color: #333; /* 텍스트 색상 */
+}
+
+.summary_value {
+    font-weight: 700 !important; /* 두꺼운 글씨 */
+    color: #333; /* 텍스트 색상 */
+}

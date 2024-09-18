@@ -1,0 +1,40 @@
+.contents_tabs {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    height: 45px;
+    gap: 32px;
+    /* border-bottom: 1px solid #2c2c35; */
+  }
+  
+  .contents_tabs button {
+    background-color: transparent;
+    position: relative;
+    /* padding: 10px 10px; */
+    padding : 0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .contents_tabs button span {
+    font-size: 20px;
+    font-weight: 700;
+    color: #c3c3c6;
+  }
+  
+  .contents_tabs button.active span {
+    color: #fff;
+  }
+  
+  .tab_indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+  
