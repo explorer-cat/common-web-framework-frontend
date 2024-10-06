@@ -71,9 +71,9 @@ const SearchContent = styled.div`
 `;
 
 const StyledSearch = styled(Input)`
-  width: 180px;
+  width: 140px;
   font-size: 12px;
-  height: 32px;
+  height: 28px;
 `;
 
 function MemberSettingPage() {
@@ -321,9 +321,6 @@ function MemberSettingPage() {
 
   return (
     <>
-      <TitleContainer>
-        <Title>회원 관리</Title>
-      </TitleContainer>
       <SearchContainer>
         <SearchSection>
           <SearchContent>
@@ -339,6 +336,7 @@ function MemberSettingPage() {
             <label>가입일자</label>
             <div style = {{display:'flex', alignItems:'center',gap:12}}>
               <DatePicker
+              
                 format={dateFormat}
                 value={dayjs(createStDate, dateFormat)}
                 onChange={(date,dateString) =>  {
@@ -347,7 +345,7 @@ function MemberSettingPage() {
                   }
                   setCreateStDate(date ? date.format(dateFormat) : '');
                 }}
-                style = {{width:195}}
+                style = {{width:125,height:28,fontSize:12}}
               />
               <DatePicker
                 format={dateFormat}
@@ -358,13 +356,14 @@ function MemberSettingPage() {
                   }
                   setCreateEdDate(date ? date.format(dateFormat) : '');
                 }}
-                style = {{width:195}}
+                style = {{width:125,height:28}}
               />
             </div>
           </SearchContent>
           <SearchContent>
             <label>계정상태</label>
             <Select
+              style = {{height:28,width:80}}
               value={isBanOption}
               onChange={value => setIsBanOption(value)}>
               <Select.Option value="ALL">전체</Select.Option>
@@ -374,18 +373,18 @@ function MemberSettingPage() {
           </SearchContent>
         </SearchSection>
         <ButtonGroup>
-          <Button onClick={clickSearchData}>검색</Button>
-          <Button onClick={handleSearchDataInit}>초기화</Button>
+          <Button style = {{fontSize:12}} size = {'small'} onClick={clickSearchData}>검색</Button>
+          <Button style = {{fontSize:12}} size = {'small'} onClick={handleSearchDataInit}>초기화</Button>
         </ButtonGroup>
       </SearchContainer>
       <ButtonGroup style = {{marginBottom:12,padding:"0px 12px"}}>
-          <Button onClick={clickAddMember}>회원 추가</Button>
-          <Button onClick={clickModifyMember}>회원 수정</Button>
-          <Button onClick={clickDeleteMember}>회원 삭제</Button>
+          <Button style = {{fontSize:12}} size = {'small'} onClick={clickAddMember}>회원 추가</Button>
+          <Button style = {{fontSize:12}} size = {'small'} onClick={clickModifyMember}>회원 수정</Button>
+          <Button style = {{fontSize:12}} size = {'small'} onClick={clickDeleteMember}>회원 삭제</Button>
       </ButtonGroup>
-      <Card>
+      {/* <Card> */}
         <TableComponent
-          style = {{height:440}}
+          style = {{height:400}}
           columns={columns}
           data={memberList}
           loading={mberDataLoading}
@@ -396,12 +395,13 @@ function MemberSettingPage() {
           
         />
         <Pagination
+          size ={'small'}
           current={pageNum}
           pageSize={pageSize}
           total={pageTotalCnt}
           onChange={handlePageChange}
         />
-      </Card>
+      {/* </Card> */}
       {createModal && <MemberCreateModal successCallback = {successCallback}  onClose={closeModal} />}
       {modifyModal && <MemberModifyModal successCallback = {successCallback}  onClose={closeModal} selectedRowKeys={selectedRowKeys} />}
 

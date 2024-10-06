@@ -290,6 +290,12 @@ utils.getTickerName = (ticker) => {
             return "비트코인";
         case "KRW-ETH":
             return "이더리움";
+        case "KRW-BEAM":
+            return "빔";
+        case "KRW-MNT":
+            return "멘틀";
+        case "KRW-ZRO":
+            return "레이어제로";
         case "KRW-DOT":
             return "폴카닷";
         case "KRW-SOL":
@@ -398,6 +404,22 @@ utils.getTickerName = (ticker) => {
             return "폴리곤"
         case "KRW-MANA":
             return "디센트럴렌드"
+        case "KRW-POL":
+            return "폴리곤"
+        case "KRW-IOTA":
+            return "아이오타"
+        case "KRW-DOGE":
+            return "도지코인"
+        case "KRW-ASTR":
+            return "아스타"
+        case "KRW-ZRO":
+            return "레이어제로"
+        case "KRW-MASK":
+            return "마스크네트워크"
+        case "KRW-ARDR":
+            return "아더"
+        case "KRW-CELO":
+            return "셀로"
         default:
             return ticker
     }
@@ -405,7 +427,7 @@ utils.getTickerName = (ticker) => {
 
  //업비트 전체 자산 정보 가져오기
 utils.getUpbitCoinListAll = (callback) => {
-    console.log('allSymbol',allSymbol)
+    // console.log('allSymbol',allSymbol)
     if(allSymbol.length == 0) {
         fetch("https://api.upbit.com/v1/market/all").then((response) => response.json()).then(result => {
             result.map((info) => {

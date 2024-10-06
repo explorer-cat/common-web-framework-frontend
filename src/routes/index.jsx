@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Navigate, Routes, Route, useLocation,BrowserRouter } from 'react-router-dom';
 import ToastOnlyTitle from '../components/toast/toast-only-title';
-import AdminWrapped from '../pages/admin/AdminWrapped';
+import PageWrapped from '../pages/PageWrapped';
 const RootRoutes = () => {
   //useLocation객체를 이용하여 정규표현식을 사용한 /admin/~ 으로 시작하는 경로와 비교에 사용(아래 1줄) */}
   const {pathname} = useLocation();
@@ -43,21 +43,25 @@ const RootRoutes = () => {
 // 		}
 // 	}
 //   },[jwtAuthentication, location, mounted]); // location 경로와 페이지 마운트상태가 변경 될 때 업데이트 후 리렌더링
-
-
 //   if(mounted) { // 인증 없이 시스템관리 URL로 접근할 때 렌더링 되는 것을 방지하는 조건추가.
-
-
-
-
-
 	  return (
       <>
       {/* 공통 컴포넌트 */}
       <ToastOnlyTitle />
-      {pathname.indexOf('/admin/') !== -1 ? <AdminWrapped /> : null}
-
-      {/* {pathname.indexOf('/main/') !== -1 ? <TradePage /> : null} */}
+      <Routes>
+        <Route path="/upbit/backtest" element={<PageWrapped link="/upbit/backtest" />} />
+        <Route path="/upbit/real-trade" element={<PageWrapped link="/upbit/real-trade" />} />
+        <Route path="/upbit/profit" element={<PageWrapped link="/upbit/profit" />} />
+        <Route path="/trade/log" element={<PageWrapped link="/trade/log" />} />
+        <Route path="/trade/chart" element={<PageWrapped link="/trade/chart" />} />
+        <Route path="/trade/data" element={<PageWrapped link="/trade/data" />} />
+        <Route path="/upbit/all" element={<PageWrapped link="/upbit/all" />} />
+        <Route path="/upbit/assets" element={<PageWrapped link="/upbit/assets" />} />
+        <Route path="/files" element={<PageWrapped link="/files" />} />
+        <Route path="/admin/member" element={<PageWrapped link="/admin/member" />} />
+        <Route path="/admin/role" element={<PageWrapped link="/admin/role" />} />
+        <Route path="/admin/common-code" element={<PageWrapped link="/admin/common-code" />} />
+      </Routes>
       {/* {pathname.indexOf('/dashboard') !== -1 ? <DashBoardPage /> : null} */}
       {/* {pathname.indexOf('/portpolio') !== -1 ? <TradeBoardPage /> : null} */}
       </>

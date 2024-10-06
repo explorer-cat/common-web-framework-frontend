@@ -8,7 +8,6 @@ const TableWrapper = styled.div`
   margin: 20px 0;
   overflow-x: auto;
   border-radius: 6px;
-  overflow: hidden;
 `;
 
 const StyledTable = styled.table`
@@ -17,7 +16,7 @@ const StyledTable = styled.table`
 `;
 
 const StyledTh = styled.th`
-  padding: 10px;
+  padding: 6px;
   text-align: ${(props) => (props.isCheckbox ? 'center' : props.textAlign || 'left')};
   width: ${(props) => (props.isCheckbox ? '50px' : props.width || 'auto')};
   background-color: #fff;
@@ -31,7 +30,7 @@ const StyledTh = styled.th`
 `;
 
 const StyledTd = styled.td`
-  padding: 10px;
+  padding: 6px;
   font-size: 12px;
   color: #344767;
   text-align: ${(props) => (props.isCheckbox ? props.textAlign : props.textAlign || 'left')};
@@ -60,7 +59,6 @@ const TableComponent = ({ style, data, loading, columns, showCheckbox = true, ro
   const originalData = [...data];
 
   useEffect(() => {
-    console.log('rowSelection', rowSelection);
     setSelectedRows(rowSelection.selectedRowKeys);
   }, [rowSelection]);
 
@@ -210,7 +208,7 @@ const TableComponent = ({ style, data, loading, columns, showCheckbox = true, ro
                     isCheckbox={showCheckbox && colIndex === 0}
                     textAlign={column.textAlign}
                   >
-                    {row[column.key]}
+                    {column.formatter ? column.formatter(row[column.key]) : row[column.key]}
                   </StyledTd>
                 ))}
             </StyledTr>

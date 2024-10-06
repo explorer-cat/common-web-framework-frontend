@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import styled from 'styled-components'
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
 
 const SubMenuWrap = styled.div`
   display: flex;
@@ -64,25 +65,29 @@ const LogoDiv = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+const items1 = ['내 포트폴리오', '자동매매 AI', '관리자 설정'].map((key) => ({
+  key,
+  label: `${key}`,
+}));
+
+
+
 function TopMenu(props) {
     const navigate = useNavigate();
 
     return (
         <>
-        <SubMenuWrap>
-            <MenuBox>
-                <LogoDiv>
-                    <img alt=""
-                         id="top_logo"
-                         style={{width: 24, height: 24}}
-                         src="../assets/images/white_menu.png"/>
-                </LogoDiv>
-                <MenuList>
-                    <li id="companySetting" className = {props.selected === 0 ? "selected" : ""}>자동매매</li>
-                    <li id="memberSetting" className = {props.selected === 1 ? "selected" : ""}>관리자</li>
-                </MenuList>
-            </MenuBox>
-        </SubMenuWrap>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={['2']}
+          items={items1}
+          style={{
+            flex: 1,
+            minWidth: 0,
+          }}
+        />
         </>
     );
 }

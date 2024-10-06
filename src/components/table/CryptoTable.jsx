@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import '../../styles/table.css'
-import { connectUpbitSocket } from '../../socket/socket';
 import { utils } from '../../utils/utils';
-import useMyWallet from '../../stores/stores';
 
 const CryptoTable = ({ tableOption,rowsData }) => {
   const { options, columns, values } = tableOption;

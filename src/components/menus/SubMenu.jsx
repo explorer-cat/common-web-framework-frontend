@@ -1,131 +1,116 @@
-
 import React, { useState } from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu, Switch } from 'antd';
-import SubMenu from 'antd/es/menu/SubMenu';
-const items = [
-  {
-    key: 'adminSetting',
-    label: '관리자 메뉴',
-    icon: <SettingOutlined />,
-    children: [
-      {
-        key: '500',
-        label: '사용자 관리',
-      },
-      {
-        key: '501',
-        label: '권한 관리',
-      },
-      {
-        key: '502',
-        label: '소속 관리',
-      },
-    ],
-  },
-  {
-    key: 'logSetting',
-    label: '로그관리',
-    icon: <MailOutlined />,
-    children: [
-      {
-        key: 'log1',
-        label: '사용자 로그',
-        type: 'group',
-        children: [
-          {
-            key: '1',
-            label: '접근 로그',
-          },
-          {
-            key: '2',
-            label: 'API 호출로그',
-          },
-        ],
-      },
-      {
-        key: 'log2',
-        label: '에러 로그',
-        type: 'group',
-        children: [
-          {
-            key: '3',
-            label: '화면 에러 로그',
-          },
-          {
-            key: '4',
-            label: '서버 에러 로그',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    key: 'sub2',
-    label: 'Navigation Two',
-    icon: <AppstoreOutlined />,
-    children: [
-      {
-        key: '5',
-        label: 'Option 5',
-      },
-      {
-        key: '6',
-        label: 'Option 6',
-      },
-      {
-        key: 'sub3',
-        label: 'Submenu',
-        children: [
-          {
-            key: '7',
-            label: 'Option 7',
-          },
-          {
-            key: '8',
-            label: 'Option 8',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'divider',
-  },
-];
-const VerticalMenu = () => {
-  const [theme, setTheme] = useState('dark');
-  const [current, setCurrent] = useState('1');
-  const changeTheme = (value) => {
-    setTheme(value ? 'dark' : 'light');
-  };
+import { Menu, Switch, Layout, theme } from 'antd';
+import {
+  LaptopOutlined, NotificationOutlined, UserOutlined, DesktopOutlined,
+  FileOutlined,
+  PieChartOutlined,
+  TeamOutlined,
+} from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+const { Header, Content, Sider } = Layout;
+
+const SubMenu = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
+  function getItem(label, key, icon, children) {
+    return {
+      key,
+      icon,
+      children,
+      label,
+    };
+  }
+
+  const items = [
+    getItem('체결 내역 관리', '100', <UserOutlined />, [
+      getItem('백테스팅 내역', '101'),
+      getItem('실제매매 내역', '102'),
+      getItem('슬리피지/수익률', '103'),
+    ]),
+    getItem('모니터링', '200', <DesktopOutlined />, [
+      getItem('자동매매 AI', '201'),
+      getItem('차트분석', '202'),
+      getItem('데이터수집', '203'),
+    ]),
+    getItem('포트폴리오', '300', <UserOutlined />, [
+      getItem('전체', '301'),
+      getItem('암호화폐', '302'),
+      getItem('주식', '303'),
+    ]),
+    getItem('관리자 설정', '500', <UserOutlined />, [
+      getItem('사용자 관리', '501'),
+      getItem('권한 관리', '502'),
+      getItem('공통 코드 관리', '503'),
+    ]),
+  ];
+
   const onClick = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
+    switch (e.key) {
+      case '101':
+        navigate('/upbit/backtest');
+        break;
+      case '102':
+        navigate('/upbit/real-trade');
+        break;
+      case '103':
+        navigate('/upbit/profit');
+        break;
+      case '201':
+        navigate('/trade/log');
+        break;
+      case '202':
+        navigate('/trade/chart');
+        break;
+      case '203':
+        navigate('/trade/data');
+        break;
+      case '301':
+        navigate('/upbit/all');
+        break;
+      case '302':
+        navigate('/upbit/assets');
+        break;
+      case '303':
+        navigate('/upbit/assets');
+        break;
+      case '501':
+        navigate('/admin/member');
+        break;
+      case '502':
+        navigate('/admin/role');
+        break;
+      case '503':
+        navigate('/admin/common-code');
+        break;
+      default:
+        break;
+    }
   };
+
   return (
-    <>
-      {/* <Switch
-        checked={theme === 'dark'}
-        onChange={changeTheme}
-        checkedChildren="Dark"
-        unCheckedChildren="Light"
-      /> */}
-      <br />
-      <br />
+    <Sider
+      collapsible
+      collapsed={collapsed}
+      onCollapse={(value) => setCollapsed(value)}
+      style={{ background: colorBgContainer, width: collapsed ? 80 : 200 }} // Adjust the width here
+    >
+      <div className="demo-logo-vertical" />
       <Menu
-        theme={theme}
-        onClick={onClick}
-        style={{
-          width: 256,
-        }}
-        defaultOpenKeys={['sub1']}
-        selectedKeys={[current]}
+        theme="light"
+        defaultSelectedKeys={['1']}
+        defaultOpenKeys={['100', '200', '300', '500']} // Add this line to keep all menus open
         mode="inline"
         items={items}
+        onClick={onClick}
+        style={{ fontSize: '14px' }} // Adjust the font size here
       />
-    </>
+    </Sider>
   );
 };
 
-export default VerticalMenu;
+export default SubMenu;
